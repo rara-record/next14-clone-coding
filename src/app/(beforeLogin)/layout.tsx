@@ -9,7 +9,11 @@ export const metadata: Metadata = {
 
 type Props = {
   children: React.ReactNode
+  modal: React.ReactNode
 }
-export default function HomeLayout({ children }: Props) {
-  return <div className={styles.container}>{children}</div>
+export default function BeforeLoginLayout({ children, modal }: Props) {
+  return <div className={styles.container}>
+    {children}
+    {modal}
+  </div>
 }
