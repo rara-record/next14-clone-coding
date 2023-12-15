@@ -4,6 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ZLogo from '../../../public/img/zlogo.png'
 import NavMenu from '@/app/(afterLogin)/_component/NavMenu'
+import LogoutButton from '@/app/(afterLogin)/_component/LogoutButton'
+import TrendSection from '@/app/(afterLogin)/_component/TrendSection'
+import FollowRecommend from '@/app/(afterLogin)/_component/FollowRecommend'
 
 const AfterLoginLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -24,7 +27,7 @@ const AfterLoginLayout = ({ children }: { children: ReactNode }) => {
                 게시하기
               </Link>
             </nav>
-            <button>로그아웃 버튼</button>
+            <LogoutButton />
           </div>
         </section>
       </header>
@@ -42,9 +45,12 @@ const AfterLoginLayout = ({ children }: { children: ReactNode }) => {
                 <input type="search" />
               </form>
             </div>
-
+            <TrendSection />
             <div className={style.followRecommend}>
               <h3>팔로우 추천</h3>
+              <FollowRecommend />
+              <FollowRecommend />
+              <FollowRecommend />
             </div>
           </section>
         </div>
