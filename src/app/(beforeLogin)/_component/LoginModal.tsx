@@ -13,17 +13,6 @@ export default function LoginModal() {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     setMessage('')
-    try {
-      await signIn('credentials', {
-        username: id,
-        password,
-        redirect: false,
-      })
-      router.replace('/home')
-    } catch (err) {
-      console.error(err)
-      setMessage('아이디와 비밀번호가 일치하지 않습니다.')
-    }
   }
   const onClickClose = () => {
     router.back()
