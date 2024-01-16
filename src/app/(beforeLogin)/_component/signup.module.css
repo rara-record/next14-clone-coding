@@ -89,7 +89,6 @@
 .actionButton:hover {
     background-color: rgb(39,44,48);
 }
-
 .closeButton {
     width: 34px;
     height: 34px;
@@ -106,4 +105,8 @@
 }
 .closeButton:hover {
     background-color: rgba(15,20,25, 0.1);
+}
+.error {
+    font-weight: bold;
+    color: red;
 }

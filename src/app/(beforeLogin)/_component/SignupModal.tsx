@@ -1,28 +1,33 @@
+'use client'
+
 import style from './signup.module.css'
-import { redirect } from 'next/navigation'
+import { useFormState, useFormStatus } from 'react-dom'
 import BackButton from '@/app/(beforeLogin)/_component/BackButton'
+import onSubmit from '@/app/(beforeLogin)/_lib/signup'
+
+const showMessage = (message: string) => {
+  if (message === 'no_id') {
+    return '아이디를 입력하세요.'
+  }
+  if (message === 'no_name') {
+    return '닉네임을 입력하세요.'
+  }
+  if (message === 'no_password') {
+    return '비밀번호를 입력하세요.'
+  }
+  if (message === 'no_image') {
+    return '이미지를 업로드하세요.'
+  }
+  if (message === 'user_exists') {
+    return '이미 사용 중인 아이디입니다.'
+  }
+}
 
 export default function SignupModal() {
-  const submit = async (formData: FormData) => {
-    'use server'
-    let shouldRedirect = false
+  const [state, formAction] = useFormState(onSubmit, { message: null })
+  const { pending } = useFormStatus
 
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
-        method: 'post',
-        body: formData,
-        credentials: 'include',
-      })
-      shouldRedirect = true
-      console.log(await response.json())
-    } catch (err) {
-      console.error(err)
-    }
-
-    if (shouldRedirect) {
-      redirect('/home') // redirect는 try, catch 문안에서 쓰면 안됨
-    }
-  }
+  console.log(state, 'state')
 
   return (
     <>
@@ -32,7 +37,7 @@ export default function SignupModal() {
             <BackButton />
             <div>계정을 생성하세요.</div>
           </div>
-          <form action={submit}>
+          <form action={formAction}>
             <div className={style.modalBody}>
               <div className={style.inputDiv}>
                 <label className={style.inputLabel} htmlFor="id">
@@ -44,25 +49,26 @@ export default function SignupModal() {
                 <label className={style.inputLabel} htmlFor="name">
                   닉네임
                 </label>
-                <input id="name" name="name" className={style.input} type="text" placeholder="" required />
+                <input id="name" name="name" className={style.input} type="text" placeholder="" />
               </div>
               <div className={style.inputDiv}>
                 <label className={style.inputLabel} htmlFor="password">
                   비밀번호
                 </label>
-                <input id="password" name="password" className={style.input} type="password" placeholder="" required />
+                <input id="password" name="password" className={style.input} type="password" placeholder="" />
               </div>
               <div className={style.inputDiv}>
                 <label className={style.inputLabel} htmlFor="image">
                   프로필
                 </label>
-                <input id="image" name="image" className={style.input} type="file" accept="image/*" required />
+                <input id="image" name="image" className={style.input} type="file" accept="image/*" />
               </div>
             </div>
             <div className={style.modalFooter}>
-              <button type="submit" className={style.actionButton}>
+              <button type="submit" className={style.actionButton} disabled={pending}>
                 가입하기
               </button>
+              <div className={style.error}>{showMessage(state.message || '')}</div>
             </div>
           </form>
         </div>
