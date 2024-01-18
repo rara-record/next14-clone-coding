@@ -69,7 +69,7 @@ const SignupModal = () => {
             <button type='submit' className={style.actionButton} disabled={pending}>
               가입하기
             </button>
-            <div className={style.error}>{showMessage(state.message || '')}</div>
+            <div className={style.error}>{showMessage(state.message)}</div>
           </div>
         </form>
       </div>
