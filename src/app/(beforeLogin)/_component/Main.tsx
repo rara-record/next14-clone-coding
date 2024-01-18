@@ -1,9 +1,10 @@
-import styles from '@/app/(beforeLogin)/_component/main.module.css'
-import Image from 'next/image'
-import zLogo from '../../../../public/img/zlogo.png'
 import Link from 'next/link'
+import Image from 'next/image'
 
-export default function Main() {
+import styles from '@/app/(beforeLogin)/_component/main.module.css'
+import zLogo from '../../../../public/img/zlogo.png'
+
+const Main = () => {
   return (
     <>
       <div className={styles.left}>
@@ -23,3 +24,5 @@ export default function Main() {
     </>
   )
 }
+
+export default Main

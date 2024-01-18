@@ -1,8 +1,11 @@
 'use client'
-import style from './styles/tab.module.css'
+
 import { useState } from 'react'
 
-export default function Tab() {
+import style from './styles/tab.module.css'
+
+
+const Tab = () => {
   const [tab, setTab] = useState('rec')
 
   const onClickRec = () => {
@@ -16,14 +19,16 @@ export default function Tab() {
     <div className={style.homeFixed}>
       <div className={style.homeText}>홈</div>
       <div className={style.homeTab}>
-        <div onClick={onClickRec}>
+        <button type="button" onClick={onClickRec}>
           추천
-          <div className={style.tabIndicator} hidden={tab === 'fol'}></div>
-        </div>
-        <div onClick={onClickFol}>
-          팔로우 중<div className={style.tabIndicator} hidden={tab === 'rec'}></div>
-        </div>
+          <div className={style.tabIndicator} hidden={tab === 'fol'} />
+        </button>
+        <button type="button" onClick={onClickFol}>
+          팔로우 중<div className={style.tabIndicator} hidden={tab === 'rec'} />
+        </button>
       </div>
     </div>
   )
 }
+
+export default Tab

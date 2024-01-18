@@ -1,4 +1,5 @@
 import React from 'react'
+
 import style from './home.module.css'
 import TabProvider from '@/app/(afterLogin)/home/context/TabProvider'
 import Tab from '@/app/(afterLogin)/home/_component/Tab'
