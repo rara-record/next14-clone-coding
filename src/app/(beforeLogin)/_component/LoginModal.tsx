@@ -3,6 +3,12 @@
 import style from '@/app/(beforeLogin)/_component/login.module.css'
 import { ChangeEventHandler, FormEventHandler, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
+
+/**
+ * signIn 함수를 호출할 때 import를 잘 봐야하는데
+ * 만약 서버 컴포넌트일 경우 최상단 './auth' 에서 import 해야 잘 동작한다
+ * **/
 
 export default function LoginModal() {
   const [id, setId] = useState('')
@@ -13,7 +19,19 @@ export default function LoginModal() {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     setMessage('')
+    try {
+      await signIn('credentials', {
+        username: id,
+        password,
+        redirect: false,
+      })
+      router.replace('/home')
+    } catch (err) {
+      console.error(err)
+      setMessage('아이디와 비밀번호가 일치하지 않습니다.')
+    }
   }
+
   const onClickClose = () => {
     router.back()
   }
