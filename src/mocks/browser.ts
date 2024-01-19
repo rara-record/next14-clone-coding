@@ -1,7 +1,9 @@
-import { setupWorker } from 'msw/browser'
-import { handlers } from './handlers'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { setupWorker } from 'msw/browser';
+
+import { handlers } from './handlers';
 
 // This configures a Service Worker with the given request handlers.
-const worker = setupWorker(...handlers)
+const worker = setupWorker(...handlers);
 
-export default worker
+export default worker;

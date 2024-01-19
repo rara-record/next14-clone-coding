@@ -33,7 +33,7 @@ export default async (prevState: { message: string | null }, formData: FormData)
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
       method: 'post',
       body: formData,
-      credentials: 'include',
+      credentials: 'include', // 쿠키를 브라우저에 저장하기 위해서는 필수임, 백&프론트 둘 다
     });
     console.log(response.status);
     if (response.status === 403) {
