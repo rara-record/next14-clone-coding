@@ -87,7 +87,7 @@ const LoginModal = () => {
           </div>
           <div className={style.message}>{message}</div>
           <div className={style.modalFooter}>
-            <button type='button' className={style.actionButton} disabled={!id && !password}>
+            <button type='submit' className={style.actionButton} disabled={!id && !password}>
               로그인하기
             </button>
           </div>

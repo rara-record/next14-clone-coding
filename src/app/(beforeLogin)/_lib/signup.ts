@@ -14,6 +14,7 @@ const validation = (formData: FormData) => {
   if (!formData.get('password') || !(formData.get('password') as string)?.trim()) {
     return { message: 'no_password' };
   }
+
   if (!formData.get('image')) {
     return { message: 'no_image' };
   }

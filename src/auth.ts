@@ -1,5 +1,5 @@
-import NextAuth from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const {
   handlers: { GET, POST },
@@ -23,21 +23,20 @@ export const {
             id: credentials.username,
             password: credentials.password,
           }),
-        })
+        });
 
         if (!authResponse.ok) {
-          return null
+          return null;
         }
 
-        const user = await authResponse.json()
-        console.log('user', user)
+        const user = await authResponse.json();
         return {
           email: user.id,
           name: user.nickname,
           image: user.image,
           ...user,
-        }
+        };
       },
     }),
   ],
-})
+});
