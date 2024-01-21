@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { auth } from '@/auth';
+
 import style from '@/app/(afterLogin)/layout.module.css';
 import ZLogo from '../../../public/img/zlogo.png';
 import NavMenu from '@/app/(afterLogin)/_component/NavMenu';
@@ -9,7 +11,9 @@ import LogoutButton from '@/app/(afterLogin)/_component/LogoutButton';
 import TrendSection from '@/app/(afterLogin)/_component/TrendSection';
 import FollowRecommend from '@/app/(afterLogin)/_component/FollowRecommend';
 
-const AfterLoginLayout = ({ children }: { children: ReactNode }) => {
+const AfterLoginLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+
   return (
     <div className={style.container}>
       <header className={style.leftSectionWrapper}>
@@ -20,14 +24,16 @@ const AfterLoginLayout = ({ children }: { children: ReactNode }) => {
                 <Image src={ZLogo} alt='z.com로고' width={40} height={40} />
               </div>
             </Link>
-            <nav>
-              <ul>
-                <NavMenu />
-              </ul>
-              <Link href='/compose/tweet' className={style.postButton}>
-                게시하기
-              </Link>
-            </nav>
+            {session?.user && (
+              <nav>
+                <ul>
+                  <NavMenu />
+                </ul>
+                <Link href='/compose/tweet' className={style.postButton}>
+                  게시하기
+                </Link>
+              </nav>
+            )}
             <LogoutButton />
           </div>
         </section>
