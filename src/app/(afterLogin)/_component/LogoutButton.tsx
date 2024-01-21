@@ -20,11 +20,11 @@ const LogoutButton = () => {
   return (
     <button type='button' className={style.logOutButton} onClick={onLogout}>
       <div className={style.logOutUserImage}>
-        <img src={`img/${data.user?.image as string}`} alt={data.user?.id} />
+        <img src={`img/${data.user?.image as string}`} alt={data.user?.email as string} />
       </div>
       <div className={style.logOutUserName}>
         <div>{data.user?.name}</div>
-        <div>@{data.user?.id}</div>
+        <div>@{data.user?.email}</div>
       </div>
     </button>
   );
