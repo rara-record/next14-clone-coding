@@ -9,8 +9,13 @@ import { getPostRecommends } from '@/app/(afterLogin)/home/_lib/getPostRecommend
 import Post from '@/app/(afterLogin)/_component/Post';
 
 const PostRecommends = () => {
-  const { data } = useQuery<IPost[]>({ queryKey: ['posts', 'recommends'], queryFn: getPostRecommends });
-  return data?.map((post: IPost) => <Post key={post.postId} post={post} />);
+  const { data } = useQuery<IPost[]>({
+    queryKey: ['posts', 'recommends'],
+    queryFn: getPostRecommends,
+    staleTime: 60 * 1000, // 1분동안은 항상 fresh (캐시 된 데이터)
+    gcTime: 300 * 1000,
+  });
+  return data ? data.map((post: IPost) => <Post key={post.postId} post={post} />) : null;
 };
 
 export default PostRecommends;

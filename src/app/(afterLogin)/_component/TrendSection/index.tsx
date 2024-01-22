@@ -1,5 +1,5 @@
-import style from '../styles/trendSection.module.css'
-import Trend from '@/app/(afterLogin)/_component/TrendSection/Trend'
+import style from '../styles/trendSection.module.css';
+import Trend from '@/app/(afterLogin)/_component/TrendSection/Trend';
 
 const TrendSection = () => {
   return (
@@ -18,7 +18,7 @@ const TrendSection = () => {
         <Trend />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TrendSection
+export default TrendSection;
