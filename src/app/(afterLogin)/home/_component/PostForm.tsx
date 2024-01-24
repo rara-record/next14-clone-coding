@@ -1,6 +1,7 @@
 'use client';
 
 import { ChangeEventHandler, FormEventHandler, useRef, useState } from 'react';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 
 import style from './styles/postForm.module.css';
@@ -8,10 +9,7 @@ import style from './styles/postForm.module.css';
 const PostForm = () => {
   const imageRef = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState('');
-  const me = {
-    id: 'zerohch0',
-    image: '/img/5Udwvqim.jpg',
-  };
+  const { data: me } = useSession();
 
   const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
     setContent(e.target.value);
@@ -29,7 +27,7 @@ const PostForm = () => {
     <form className={style.postForm} onSubmit={onSubmit}>
       <div className={style.postUserSection}>
         <div className={style.postUserImage}>
-          <Image src={me.image} alt={me.id} width={100} height={100} />
+          <Image src={`/img${me?.user?.image as string}`} alt={me?.user?.email as string} width={100} height={100} />
         </div>
       </div>
       <div className={style.postInputSection}>
@@ -46,7 +44,7 @@ const PostForm = () => {
                 </svg>
               </button>
             </div>
-            <button type='submit' className={style.actionButton} disabled={!content}>
+            <button type='button' className={style.actionButton} disabled={!content}>
               게시하기
             </button>
           </div>

@@ -2,11 +2,11 @@ import React from 'react';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 
 import style from './home.module.css';
-import TabProvider from '@/app/(afterLogin)/home/context/TabProvider';
 import Tab from '@/app/(afterLogin)/home/_component/Tab';
 import PostForm from '@/app/(afterLogin)/home/_component/PostForm';
+import TabProvider from '@/app/(afterLogin)/home/_component/TabProvider';
 import { getPostRecommends } from '@/app/(afterLogin)/home/_lib/getPostRecommends';
-import PostRecommends from '@/app/(afterLogin)/home/_component/PostRecommends';
+import TabDecider from '@/app/(afterLogin)/home/_component/TabDecider';
 
 const Home = async () => {
   const queryClient: QueryClient = new QueryClient();
@@ -22,7 +22,7 @@ const Home = async () => {
         <TabProvider>
           <Tab />
           <PostForm />
-          <PostRecommends />
+          <TabDecider />
         </TabProvider>
       </HydrationBoundary>
     </main>

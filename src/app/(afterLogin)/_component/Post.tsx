@@ -22,30 +22,22 @@ type Props = {
 };
 const Post = ({ noImage, post }: Props) => {
   const target = post;
-  if (Math.random() > 0.5 && !noImage) {
-    target?.Images.push(
-      { imageId: 1, link: faker.image.urlLoremFlickr() },
-      { imageId: 2, link: faker.image.urlLoremFlickr() },
-      { imageId: 3, link: faker.image.urlLoremFlickr() },
-      { imageId: 4, link: faker.image.urlLoremFlickr() },
-    );
-  }
 
   return (
     <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
-          <Link href={`/${target?.User.id}`} className={style.postUserImage}>
-            <Image src={`/img${target?.User.image}`} width={100} height={100} alt={target?.User.nickname ?? ''} />
+          <Link href={`/${target?.User?.id}`} className={style.postUserImage}>
+            <img src={`/img${target?.User?.image}`} alt={target?.User?.nickname ?? ''} />
             <span className={style.postShade} />
           </Link>
         </div>
         <div className={style.postBody}>
           <div className={style.postMeta}>
-            <Link href={`/${target?.User.id}`}>
-              <span className={style.postUserName}>{target?.User.nickname}</span>
+            <Link href={`/${target?.User?.id}`}>
+              <span className={style.postUserName}>{target?.User?.nickname}</span>
               &nbsp;
-              <span>@{target?.User.id}</span>
+              <span>@{target?.User?.id}</span>
               &nbsp; · &nbsp;
             </Link>
             <span className={style.postDate}>{dayjs(target?.createdAt).fromNow(true)}</span>

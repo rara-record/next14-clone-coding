@@ -30,7 +30,7 @@ const PostImages = ({ post }: Props) => {
         className={cx(style.postImageSection, style.oneImage)}
         style={{ backgroundImage: `url(${post.Images[0]?.link})`, backgroundSize: 'contain' }}
       >
-        <Image src={post.Images[0]?.link} alt='' />
+        <img src={post.Images[0]?.link} alt='' />
       </Link>
     );
   }
